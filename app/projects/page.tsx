@@ -113,13 +113,19 @@ export default function ProjectsPage() {
 
         {["professional", "personal"].map((category) => (
           <TabsContent key={category} value={category}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {projects
-                .filter((project) => project.category === category)
-                .map((project) => (
-                  <ProjectCard key={project.id} project={project} />
-                ))}
-            </div>
+            {projects.filter((project) => project.category === category).length === 0 ? (
+              <div className="flex items-center justify-center py-16">
+                <p className="text-muted-foreground text-lg">Come back later for personal projects</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {projects
+                  .filter((project) => project.category === category)
+                  .map((project) => (
+                    <ProjectCard key={project.id} project={project} />
+                  ))}
+              </div>
+            )}
           </TabsContent>
         ))}
       </Tabs>
@@ -130,8 +136,15 @@ export default function ProjectsPage() {
 function ProjectCard({ project }) {
   return (
     <Card className="h-full flex flex-col overflow-hidden">
-      <div className="relative h-48">
-        <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+      <div className="relative w-full h-48 bg-muted">
+        <Image
+          src={project.image || "/placeholder.svg"}
+          alt={project.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={false}
+        />
       </div>
       <CardHeader>
         <CardTitle>{project.title}</CardTitle>
