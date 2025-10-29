@@ -1,9 +1,12 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ExternalLink, Github, ImageIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import React from "react"
 
 export default function ProjectsPage() {
   const projects = [
@@ -134,17 +137,27 @@ export default function ProjectsPage() {
 }
 
 function ProjectCard({ project }) {
+  const [imageError, setImageError] = React.useState(false)
+
   return (
     <Card className="h-full flex flex-col overflow-hidden">
-      <div className="relative w-full h-48 bg-muted">
-        <Image
-          src={project.image || "/placeholder.svg"}
-          alt={project.title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          priority={false}
-        />
+      <div className="relative w-full h-48 bg-muted flex items-center justify-center">
+        {!imageError ? (
+          <Image
+            src={project.image || "/placeholder.svg"}
+            alt={project.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={false}
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <div className="flex flex-col items-center justify-center w-full h-full bg-muted">
+            <ImageIcon className="h-12 w-12 text-muted-foreground/50 mb-2" />
+            <p className="text-sm text-muted-foreground">Image unavailable</p>
+          </div>
+        )}
       </div>
       <CardHeader>
         <CardTitle>{project.title}</CardTitle>
