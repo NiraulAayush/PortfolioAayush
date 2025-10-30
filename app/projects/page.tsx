@@ -1,12 +1,9 @@
-"use client"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ExternalLink, Github, ImageIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import React from "react"
 
 export default function ProjectsPage() {
   const projects = [
@@ -116,19 +113,13 @@ export default function ProjectsPage() {
 
         {["professional", "personal"].map((category) => (
           <TabsContent key={category} value={category}>
-            {projects.filter((project) => project.category === category).length === 0 ? (
-              <div className="flex items-center justify-center py-16">
-                <p className="text-muted-foreground text-lg">Come back later for personal projects</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {projects
-                  .filter((project) => project.category === category)
-                  .map((project) => (
-                    <ProjectCard key={project.id} project={project} />
-                  ))}
-              </div>
-            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects
+                .filter((project) => project.category === category)
+                .map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+            </div>
           </TabsContent>
         ))}
       </Tabs>
@@ -137,27 +128,10 @@ export default function ProjectsPage() {
 }
 
 function ProjectCard({ project }) {
-  const [imageError, setImageError] = React.useState(false)
-
   return (
     <Card className="h-full flex flex-col overflow-hidden">
-      <div className="relative w-full h-48 bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden">
-        {!imageError ? (
-          <Image
-            src={project.image || "/placeholder.svg"}
-            alt={project.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={false}
-            onError={() => setImageError(true)}
-          />
-        ) : (
-          <div className="flex flex-col items-center justify-center w-full h-full bg-muted">
-            <ImageIcon className="h-12 w-12 text-muted-foreground/50 mb-2" />
-            <p className="text-sm text-muted-foreground">Image unavailable</p>
-          </div>
-        )}
+      <div className="relative h-48">
+        <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
       </div>
       <CardHeader>
         <CardTitle>{project.title}</CardTitle>

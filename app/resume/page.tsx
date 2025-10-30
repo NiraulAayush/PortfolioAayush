@@ -1,23 +1,15 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Download, FileText } from "lucide-react"
+import { FileText } from "lucide-react"
 import Link from "next/link"
 
 export default function ResumePage() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-        <div>
-          <h1 className="text-4xl font-bold mb-2">Resume & Certifications</h1>
-          <p className="text-muted-foreground">My professional experience and qualifications in quality assurance</p>
-        </div>
-        <Button className="mt-4 md:mt-0" asChild>
-          <a href="/api/resume" download="Aayush_Niraula_Resume.pdf">
-            <Download className="mr-2 h-4 w-4" />
-            Download Resume
-          </a>
-        </Button>
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold mb-2">Resume & Certifications</h1>
+        <p className="text-muted-foreground">My professional experience and qualifications in quality assurance</p>
       </div>
 
       <Tabs defaultValue="resume" className="w-full">
