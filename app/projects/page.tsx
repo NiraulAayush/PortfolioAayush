@@ -141,7 +141,7 @@ function ProjectCard({ project }) {
 
   return (
     <Card className="h-full flex flex-col overflow-hidden">
-      <div className="relative w-full h-48 bg-muted flex items-center justify-center">
+      <div className="relative w-full h-48 bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden">
         {!imageError ? (
           <Image
             src={project.image || "/placeholder.svg"}

@@ -11,14 +11,20 @@ export default function AboutPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
         <div className="md:col-span-1">
           <div className="sticky top-20">
-            <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl mb-6">
-              <Image src="/images/aayush-profile.png" alt="Aayush Niraula" fill className="object-cover" />
+            <div className="relative w-full h-[400px] rounded-lg overflow-hidden shadow-xl mb-6 flex-shrink-0">
+              <Image
+                src="/images/aayush-profile.png"
+                alt="Aayush Niraula"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
             </div>
             <div className="space-y-4">
               <Button asChild className="w-full">
                 <Link href="/contact">Contact Me</Link>
               </Button>
-              <Button asChild variant="outline" className="w-full">
+              <Button asChild variant="outline" className="w-full bg-transparent">
                 <Link href="/resume">
                   <FileText className="mr-2 h-4 w-4" /> View Resume
                 </Link>

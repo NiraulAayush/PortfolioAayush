@@ -38,7 +38,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl order-first md:order-last">
+          <div className="relative w-full h-[400px] rounded-lg overflow-hidden shadow-xl order-first md:order-last flex-shrink-0">
             <Image src="/images/aayush-profile.png" alt="Aayush Niraula" fill className="object-cover" priority />
           </div>
         </div>
@@ -133,8 +133,14 @@ export default function Home() {
               key={project.title}
               className="bg-card rounded-lg border overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
-              <div className="h-48 bg-muted relative">
-                <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+              <div className="w-full h-48 bg-muted relative overflow-hidden flex-shrink-0">
+                <Image
+                  src={project.image || "/placeholder.svg"}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-medium mb-2">{project.title}</h3>
